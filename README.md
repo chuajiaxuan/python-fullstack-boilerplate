@@ -73,7 +73,7 @@ make docker   # Easiest - starts everything with Docker
 # Terminal 1 - API Server
 make backend
 
-# Terminal 2 - Web App  
+# Terminal 2 - Web App
 make frontend
 ```
 
@@ -218,8 +218,8 @@ docker compose -f docker-compose.prod.yml up -d
 
 1. Set up production environment variables
 2. Install dependencies: `pip install -e .`
-4. Start backend: `uvicorn backend.main:app --host 0.0.0.0 --port 8000`
-5. Start frontend: `streamlit run frontend/main.py --server.address 0.0.0.0`
+3. Start backend: `uvicorn backend.main:app --host 0.0.0.0 --port 8000`
+4. Start frontend: `streamlit run frontend/main.py --server.address 0.0.0.0`
 
 ## 📋 Contributing
 
