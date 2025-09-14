@@ -21,16 +21,14 @@ help: ## 📖 Show all available commands
 	@echo ""
 
 setup: ## 🔧 Install everything needed (run this first!)
-	@echo "🐍 Creating conda environment..."
-	conda env create -f environment.yml
+	@echo "📦 Installing Python packages..."
+	pip install -e .[dev]
+	@echo "🔗 Setting up code quality tools..."
+	pre-commit install
 	@echo "📄 Creating settings file..."
 	@if [ ! -f .env ]; then cp .env.example .env; echo "✅ Created .env file"; fi
 	@echo ""
-	@echo "🎉 Setup complete!"
-	@echo "⚠️  IMPORTANT: Run this command first:"
-	@echo "   conda activate python-fullstack-boilerplate"
-	@echo ""
-	@echo "Then: make start"
+	@echo "🎉 Setup complete! Next: make start"
 
 start: ## 🚀 Start the app (you need 2 terminals)
 	@echo ""

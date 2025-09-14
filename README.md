@@ -30,7 +30,8 @@ python-fullstack-boilerplate/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- [Anaconda](https://www.anaconda.com/download) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) (recommended for beginners)
+- Python 3.10 or higher
+- pip (comes with Python)
 - Git
 
 ### Installation
@@ -41,22 +42,17 @@ python-fullstack-boilerplate/
    cd python-fullstack-boilerplate
    ```
 
-2. **Create conda environment**
+2. **Install everything**
    ```bash
-   conda env create -f environment.yml
+   pip install -e .[dev]
    ```
 
-3. **Activate the environment** (do this every time!)
-   ```bash
-   conda activate python-fullstack-boilerplate
-   ```
-
-4. **Set up development tools**
+3. **Set up development tools**
    ```bash
    pre-commit install
    ```
 
-5. **Create environment file**
+4. **Create environment file**
    ```bash
    cp .env.example .env
    # Edit .env with your configuration
@@ -68,22 +64,16 @@ python-fullstack-boilerplate/
 
 **Super Simple (recommended for beginners):**
 ```bash
-# One-time setup
-conda env create -f environment.yml
-conda activate python-fullstack-boilerplate
-
-# Start the app
+make setup    # One-time setup
 make docker   # Easiest - starts everything with Docker
 ```
 
-**For Development (remember to activate conda first!):**
+**For Development:**
 ```bash
-conda activate python-fullstack-boilerplate
-
 # Terminal 1 - API Server
 make backend
 
-# Terminal 2 - Web App  
+# Terminal 2 - Web App
 make frontend
 ```
 
@@ -194,7 +184,7 @@ pytest-watch
 
 ## 📦 Package Management
 
-This project uses **conda** for dependency management (beginner-friendly!). Key dependencies:
+This project uses **pyproject.toml** for modern Python dependency management. Key dependencies:
 
 **Backend:**
 - FastAPI: Web framework
@@ -227,10 +217,9 @@ docker compose -f docker-compose.prod.yml up -d
 ### Manual Deployment
 
 1. Set up production environment variables
-2. Create conda environment: `conda env create -f environment.yml`
-3. Activate environment: `conda activate python-fullstack-boilerplate`
-4. Start backend: `uvicorn backend.main:app --host 0.0.0.0 --port 8000`
-5. Start frontend: `streamlit run frontend/main.py --server.address 0.0.0.0`
+2. Install dependencies: `pip install -e .`
+3. Start backend: `uvicorn backend.main:app --host 0.0.0.0 --port 8000`
+4. Start frontend: `streamlit run frontend/main.py --server.address 0.0.0.0`
 
 ## 📋 Contributing
 
