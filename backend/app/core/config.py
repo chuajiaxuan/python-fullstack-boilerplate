@@ -1,13 +1,17 @@
-import os
-from dotenv import load_dotenv
+from functools import lru_cache
+from pydantic_settings import BaseSettings
 
-load_dotenv()
 
-APP_NAME = os.getenv("APP_NAME", "Hello World API")
-DEBUG = os.getenv("DEBUG", "true").lower() == "true"
-API_V1_STR = os.getenv("API_V1_STR", "/api/v1")
+class Settings(BaseSettings):
+    app_name: str = "Hello World API"
+    debug: bool = True
+    api_v1_str: str = "/api/v1"
+    cors_origins: list[str] = ["http://localhost:8501", "http://127.0.0.1:8501"]
+    
+    class Config:
+        env_file = ".env"
 
-CORS_ORIGINS = [
-    "http://localhost:8501",
-    "http://127.0.0.1:8501"
-]
+
+@lru_cache()
+def get_settings() -> Settings:
+    return Settings()

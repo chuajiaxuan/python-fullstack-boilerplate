@@ -2,23 +2,25 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.api.v1.api import api_router
-from backend.app.core import config
+from backend.app.core.config import get_settings
+
+settings = get_settings()
 
 app = FastAPI(
-    title=config.APP_NAME,
-    openapi_url=f"{config.API_V1_STR}/openapi.json",
-    debug=config.DEBUG,
+    title=settings.app_name,
+    openapi_url=f"{settings.api_v1_str}/openapi.json",
+    debug=settings.debug,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=config.CORS_ORIGINS,
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(api_router, prefix=config.API_V1_STR)
+app.include_router(api_router, prefix=settings.api_v1_str)
 
 
 def run():
@@ -27,7 +29,7 @@ def run():
         "backend.main:app",
         host="0.0.0.0",
         port=8000,
-        reload=config.DEBUG,
+        reload=settings.debug,
     )
 
 
